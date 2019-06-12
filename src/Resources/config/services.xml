@@ -6,7 +6,7 @@
 
     <services>
         <!-- Explicitly configure the service -->
-        <service id="fulgens_input_phone_by_country.country_provider" class="Fulgens\InputPhoneByCountryBundle\Provider\CountryProvider" />
+        <service id="fulgens_input_phone_by_country.country_provider" class="Fulgens\InputPhoneByCountryBundle\Provider\CountryProvider" public="true"/>
         
         <service id="Fulgens\InputPhoneByCountryBundle\Provider\CountryProvider" alias="fulgens_input_phone_by_country.country_provider" />
 

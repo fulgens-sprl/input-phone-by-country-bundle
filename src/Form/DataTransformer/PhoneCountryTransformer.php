@@ -59,7 +59,13 @@ class PhoneCountryTransformer implements DataTransformerInterface
         }
 
         $countryCode = explode(" ", $value)[0];
-        $phone = str_replace($countryCode." ", "", $value);
+
+        $pos = strpos($value, $countryCode." ");
+        if ($pos !== false) {
+            $phone = substr_replace($value, "", $pos, strlen($countryCode." "));
+        } else {
+            $phone = $value;
+        }
 
         return [
             "countryCode" => $countryCode,
