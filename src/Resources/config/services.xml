@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Explicitly configure the service -->
+        <service id="fulgens_input_phone_by_country.country_provider" class="Fulgens\InputPhoneByCountryBundle\Provider\CountryProvider" />
+        
+        <service id="Fulgens\InputPhoneByCountryBundle\Provider\CountryProvider" alias="fulgens_input_phone_by_country.country_provider" />
+
+
+        <service id="fulgens_input_phone_by_country.country_type" class="Fulgens\InputPhoneByCountryBundle\Form\PhoneByCountryType">
+            <tag name="form.type"/>
+            <argument type="service" id="fulgens_input_phone_by_country.country_provider"/>
+        </service>
+
+        <service id="Fulgens\InputPhoneByCountryBundle\Form\PhoneByCountryType" alias="fulgens_input_phone_by_country.country_type"/>
+    </services>
+</container>
