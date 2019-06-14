@@ -1,5 +1,5 @@
 {
-    "name": "fulgens/input-phone-by-country-bundle",
+    "name": "fulgens-sprl/input-phone-by-country-bundle",
     "description": "This helps your user to enter a phone number with the correct pre-fix",
     "type": "symfony-bundle",
     "license": "MIT",
