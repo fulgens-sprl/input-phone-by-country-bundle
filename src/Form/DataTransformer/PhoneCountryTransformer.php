@@ -108,7 +108,7 @@ class PhoneCountryTransformer implements DataTransformerInterface
         if (strlen($value["countryCode"]) != 4) {
             throw new TransformationFailedException("The country code does not have a correct format");
         }
-        if (!preg_match("/^[0-9 \.]$/", $value["phone"])) {
+        if (!preg_match("/^[0-9 \.]*$/", $value["phone"])) {
             throw new TransformationFailedException("The phone number only accepts number, dot or space");
         }
 
