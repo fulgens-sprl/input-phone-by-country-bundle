@@ -18,13 +18,13 @@ class CountryProviderTest extends TestCase
 
     public function testGetCountriesIsArray()
     {
-        $this->assertTrue(is_array($this->countryProvider->getCountries()));
-        $this->assertGreaterThanOrEqual(2, count($this->countryProvider->getCountries()));
+        $this->assertTrue(is_array($this->countryProvider->getCountries([])));
+        $this->assertGreaterThanOrEqual(2, count($this->countryProvider->getCountries([])));
     }
 
     public function testGetCountriesReturnType()
     {
-        foreach ($this->countryProvider->getCountries() as $country)
+        foreach ($this->countryProvider->getCountries([]) as $country)
             $this->assertInstanceOf(Country::class, $country);
     }
 }

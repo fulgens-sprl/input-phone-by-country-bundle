@@ -52,7 +52,7 @@ class PhoneCountryTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if (null === $value)
-            return "";
+            return [];
 
         if (!preg_match("/^00[0-9]{2} /", $value)) {
             throw new TransformationFailedException("The phone number is in incorrect format");

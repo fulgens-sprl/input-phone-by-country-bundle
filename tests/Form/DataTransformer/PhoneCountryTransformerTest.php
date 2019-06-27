@@ -35,6 +35,7 @@ class PhoneCountryTransformerTest extends TestCase
             ["0032 478367983", ["countryCode" => "0032", "phone" => "478367983"]],
             ["0032 478 36 79 83", ["countryCode" => "0032", "phone" => "478 36 79 83"]],
             ["0032 49 0032 83", ["countryCode" => "0032", "phone" => "49 0032 83"]],
+            [null, []]
         ];
     }
 
