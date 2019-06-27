@@ -29,7 +29,7 @@ class PhoneByCountryType extends AbstractType
     {
         $builder
             ->add('countryCode', ChoiceType::class, [
-                'choices' => $this->countryProvider->getCountries(),
+                'choices' => $this->countryProvider->getCountries($options["countryOptions"]),
                 'choice_label' => function(CountryInterface $country) {
                     return $country->getCountryPhoneCode();
                 }
@@ -42,5 +42,9 @@ class PhoneByCountryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
+
+        $resolver->setDefaults([
+            "countryOptions" => []
+        ]);
     }
 }
