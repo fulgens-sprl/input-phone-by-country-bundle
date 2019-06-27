@@ -4,6 +4,7 @@
 namespace Fulgens\InputPhoneByCountryBundle\Tests\Form\DataTransformer;
 
 
+use Fulgens\InputPhoneByCountryBundle\Entity\Country;
 use Fulgens\InputPhoneByCountryBundle\Form\DataTransformer\PhoneCountryTransformer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -75,8 +76,8 @@ class PhoneCountryTransformerTest extends TestCase
     public function usualReverseTransformProvider()
     {
         return [
-            [["phone" => "479 36 79 83", "countryCode" => "0032"], "0032 479 36 79 83"],
-            [["phone" => "479 36 7983", "countryCode" => "0032"], "0032 479 36 7983"],
+            [["phone" => "479 36 79 83", "countryCode" => new Country("0032", "Belgium")], "0032 479 36 79 83"],
+            [["phone" => "479 36 7983", "countryCode" => new Country("0033", "France")], "0033 479 36 7983"],
         ];
     }
 
@@ -100,9 +101,9 @@ class PhoneCountryTransformerTest extends TestCase
             [["phone" => 25, 5], "The country code or phone is not set"],
             [["phone" => "", "countryCode" => ""], "The country code does not have a correct format"],
             [["phone" => "", "countryCode" => "00"], "The country code does not have a correct format"],
-            [["phone" => "azeaze", "countryCode" => "4444"], "The phone number only accepts number, dot or space"],
-            [["phone" => "564aze", "countryCode" => "4444"], "The phone number only accepts number, dot or space"],
-            [["phone" => "555 5!", "countryCode" => "4444"], "The phone number only accepts number, dot or space"],
+            [["phone" => "azeaze", "countryCode" => new Country("0032", "Belgium")], "The phone number only accepts number, dot or space"],
+            [["phone" => "564aze", "countryCode" => new Country("0032", "Belgium")], "The phone number only accepts number, dot or space"],
+            [["phone" => "555 5!", "countryCode" => new Country("0032", "Belgium")], "The phone number only accepts number, dot or space"],
         ];
     }
 }

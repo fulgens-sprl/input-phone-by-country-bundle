@@ -32,6 +32,11 @@ class PhoneByCountryType extends AbstractType
                 'choices' => $this->countryProvider->getCountries($options["countryOptions"]),
                 'choice_label' => function(CountryInterface $country) {
                     return $country->getCountryPhoneCode();
+                },
+                'choice_value' => function(?CountryInterface $country) {
+                    if (null === $country)
+                        return "";
+                    return $country->getCountryPhoneCode();
                 }
             ])
             ->add('phone', TelType::class);

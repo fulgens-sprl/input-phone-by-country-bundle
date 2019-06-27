@@ -4,6 +4,7 @@
 namespace Fulgens\InputPhoneByCountryBundle\Form\DataTransformer;
 
 
+use Fulgens\InputPhoneByCountryBundle\Entity\CountryInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -105,13 +106,13 @@ class PhoneCountryTransformer implements DataTransformerInterface
         if (!isset($value["countryCode"]) || !isset($value["phone"])) {
             throw new TransformationFailedException("The country code or phone is not set");
         }
-        if (strlen($value["countryCode"]) != 4) {
+        if (!$value["countryCode"] instanceof CountryInterface) {
             throw new TransformationFailedException("The country code does not have a correct format");
         }
         if (!preg_match("/^[0-9 \.]*$/", $value["phone"])) {
             throw new TransformationFailedException("The phone number only accepts number, dot or space");
         }
 
-        return sprintf("%s %s", $value["countryCode"], $value["phone"]);
+        return sprintf("%s %s", $value["countryCode"]->getCountryPhoneCode(), $value["phone"]);
     }
 }
